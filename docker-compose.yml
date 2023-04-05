@@ -1,0 +1,26 @@
+version: "3.3"
+
+services:
+  nginx:
+   build:
+     context: /home/docker/devops_module10_compose/nginx
+     dockerfile: /home/docker/devops_module10_compose/nginx/Dockerfile
+   networks:
+     - default
+   ports:
+     - "8080:8080"
+   depends_on:
+     - php
+
+  php:
+   build:
+     context: /home/docker/devops_module10_compose
+     dockerfile: /home/docker/devops_module10_compose/Dockerfile
+
+
+networks:
+ default:
+  ipam:
+    driver: default
+    config:
+     - subnet: 127.0.0.1/16
